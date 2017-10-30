@@ -1,6 +1,9 @@
 # AsyncNaverShortenURL
 
 ### Result
+
+- Simple Test Time : 1.232
+- Async Test Time : 0.848
 ```
 {"message":"ok","result":{"hash":"G9jJUo6E","url":"http://me2.do/G9jJUo6E","orgUrl":"https://www.naver.com"},"code":"200"}
 {"message":"ok","result":{"hash":"IDMProCw","url":"http://me2.do/IDMProCw","orgUrl":"https://www.apple.com"},"code":"200"}
