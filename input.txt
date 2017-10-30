@@ -1,0 +1,15 @@
+https://www.naver.com
+https://www.apple.com
+https://www.google.com
+https://www.youtube.com
+https://www.daum.net
+https://www.oracle.com
+https://www.microsoft.com
+https://www.onenote.com
+https://www.onedrive.com
+https://www.icloud.com
+https://www.nexon.com
+https://www.tistory.com
+https://www.kisec.com
+https://www.kisa.com
+https://httpbin.org
