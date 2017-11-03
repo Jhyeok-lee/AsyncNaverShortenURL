@@ -40,19 +40,18 @@ public class AsyncNaverShortenURL {
 	private HttpAsyncRequestProducer producer;
 	private AsyncCharConsumer<HttpResponse> consumer;
 	
-	protected void setClientID(String clientID) {
-		this.clientID = clientID;
+	public AsyncNaverShortenURL(Settings setting) {
+		// TODO Auto-generated constructor stub
+		this.clientID = setting.ClientID;
+		this.clientSecret = setting.ClientSecret;
+		this.inputURL = new ArrayList<String>(setting.input);
+		this.setRequestConfig();
+		this.setHttpClient();
+		this.setHttpRequest();
+		this.setConsumer();
+		this.outputURL = new HashMap<String,String>();
 	}
-	
-	protected void setClientSecret(String clientSecret) {
-		this.clientSecret = clientSecret;
-	}
-	
-	protected void setInput(ArrayList<String> input) {
-		this.inputURL = new ArrayList<String>();
-		this.inputURL.addAll(input);
-	}
-	
+
 	protected HashMap<String,String> getOutput() {
 		return this.outputURL;
 	}
@@ -123,13 +122,7 @@ public class AsyncNaverShortenURL {
         };
 	}
 	
-	protected void init() {
-		this.setRequestConfig();
-		this.setHttpClient();
-		this.setHttpRequest();
-		this.setConsumer();
-		this.outputURL = new HashMap<String,String>();
-	}
+
 	
 	protected void run() throws Exception {
 		try {
@@ -141,7 +134,7 @@ public class AsyncNaverShortenURL {
 	                @Override
 	                public void completed(final HttpResponse response) {
 	                	latch.countDown();
-	                    System.out.println(response.getStatusLine());
+	                    //System.out.println(response.getStatusLine());
 	                }
 
 	                @Override

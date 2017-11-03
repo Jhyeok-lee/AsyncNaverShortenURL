@@ -1,70 +1,34 @@
 package org.jaylee.project1117;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class Test {
+	
+	final static String Usage = "Usage : java test --id [Client_ID]"
+			+ " --secret [Client_Secret] --file [Url File Path]";
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		AsyncNaverShortenURL test = new AsyncNaverShortenURL();
 		
-		/*
-		try {
-			PrintWriter pw = new PrintWriter("c:/input.txt");
-	        for(int i=1; i<=100; i++) {
-	            String data = "https://www.naver.com/" + i;
-	            pw.println(data);
-	        }
-	        pw.close();
-		} catch(IOException e) {
-			System.out.println("Error file");
+		if( args.length != 6 ) {
+			System.out.println(Usage);
+			return;
 		}
-		*/
+		Settings setting = new Settings(args);
 		
-		ArrayList<String> input = new ArrayList<String>();
+		AsyncNaverShortenURL asyncTest = new AsyncNaverShortenURL(setting);
+		SimpleNaverShortenURL simpleTest = new SimpleNaverShortenURL(setting);
+		long simpleStart = System.currentTimeMillis();
+		simpleTest.run();
+		long simpleEnd = System.currentTimeMillis();
+		System.out.println("Simple Test Time : " + (simpleEnd - simpleStart)/1000.0);
+		
+		long asyncStart = System.currentTimeMillis();
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("input.txt"));
-	        while(true) {
-	            String line = br.readLine();
-	            if (line==null) break;
-	            input.add(line);
-	        }
-	        br.close();
-		} catch(IOException e) {
-			System.out.println("Error Read");
-		}
-		
-		SimpleNaverShortenURL simpleTest = new SimpleNaverShortenURL();
-		long start1 = System.currentTimeMillis();
-		simpleTest.simpleTest(input);
-		long end1 = System.currentTimeMillis();
-		System.out.println("Simple Test Time : " + (end1-start1)/1000.0);
-		
-		long start = System.currentTimeMillis();
-		//input.add("https://www.naver.com");
-		test.setClientID("");
-		test.setClientSecret("");
-		test.setInput(input);
-		test.init();
-		try {
-			test.run();
+			asyncTest.run();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		long asyncEnd = System.currentTimeMillis();
+		System.out.println("Async Test Time : " + (asyncEnd - asyncStart)/1000.0 );
 		
-		HashMap<String,String> output = new HashMap<String,String>();
-		output.putAll(test.getOutput());
-		long end = System.currentTimeMillis();
-		for(int i=0; i<input.size(); i++) {
-			if( output.containsKey(input.get(i)) )
-				System.out.println(input.get(i) + " : " + output.get(input.get(i)));
-		}
-
-		System.out.println("Async Test Time : " + (end - start)/1000.0 );
 	}
 }
