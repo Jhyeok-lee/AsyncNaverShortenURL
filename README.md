@@ -1,7 +1,7 @@
 # AsyncNaverShortenURL
 
 ### Spring Project using this
-* [NaverShortURL](https://jhyeok-lee.github.com/navershorturl.git)
+* [NaverShortURL](https://github.com/Jhyeok-lee/NaverShortURL)
 
 ### Built With
 * [HttpAsyncClient](https://hc.apache.org/httpcomponents-asyncclient-4.1.x/index.html) - Apache HttpAsyncClient Library
